@@ -1,0 +1,9 @@
+.mi-lista li:first-child {
+    border-top-left-radius: 5px; 
+    border-top-right-radius: 5px; 
+  }
+  
+  .mi-lista li:last-child {
+    border-bottom-left-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+  }
