@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-const initalState = [{
+
+
+const initalState = ((JSON.parse( localStorage.getItem('list'))) == null) ? [{
     uuid: uuidv4(),
     name: 'Refrigerador'
 },
@@ -13,7 +15,7 @@ const initalState = [{
     uuid: uuidv4(),
     name: 'Carro'
 },
-]
+] : (JSON.parse( localStorage.getItem('list')));
 
 export const listSlice = createSlice({
     name: 'list',
@@ -39,10 +41,12 @@ export const listSlice = createSlice({
     
     deleteObject: (state,{payload}) => {
             return state.filter(object => object.uuid !== payload);
-    }
+    },
+    
+    
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { addObject, sortArray, deleteObject } = listSlice.actions;
+export const { addObject, sortArray, deleteObject, loadList } = listSlice.actions;

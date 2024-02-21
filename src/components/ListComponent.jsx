@@ -5,8 +5,10 @@ import { useEffect } from "react";
 
 export const ListComponent = () => {
 
+
   const listObjects = useSelector(state => state.list);
   const dispatch = useDispatch();
+
 
   const onDelete = (id) => {
     dispatch(deleteObject(id));
@@ -14,9 +16,8 @@ export const ListComponent = () => {
 
   useEffect(() => {
     dispatch(sortArray());
+    localStorage.setItem('list', JSON.stringify(listObjects));
   }, [listObjects]);
-
-  
 
 
   return (

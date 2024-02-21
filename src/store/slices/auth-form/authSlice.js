@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const authenticated = (JSON.parse(localStorage.getItem('checking')) == null) ? 'not-authenticated' : JSON.parse(localStorage.getItem('checking'));
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        status: 'not-authenticated', // checking, not-authenticated, authenticated
+        status: authenticated, // checking, not-authenticated, authenticated
         displayName: 'Jeison Aranguren',
         email: 'jemax@gmail.com',
         password: '123456',
@@ -21,10 +23,13 @@ export const authSlice = createSlice({
         },
         validationErrors: (state,{payload}) => {
             state.errors = payload;
+        },
+        changeStatus: (state,{payload}) => {
+            state.status = payload
         }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { login, logout, checkingCredentials, validationErrors } = authSlice.actions;
+export const { login, logout, checkingCredentials, validationErrors, changeStatus } = authSlice.actions;
